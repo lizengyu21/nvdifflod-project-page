@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="LoD Texture Baking via Explicit Correspondence and Joint Differentiable Optimization. A research project by Zengyu Li, Jiankai Xing, and Kun Xu, Tsinghua University. Submitted to IEEE TVCG in 2026.">
+  <meta name="theme-color" content="#ffffff">
+  <title>LoD Texture Baking | Zengyu Li, Jiankai Xing &amp; Kun Xu</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <main id="top">
+    <section class="hero" aria-labelledby="paper-title">
+      <h1 id="paper-title">LoD Texture Baking via Explicit Correspondence and Joint Differentiable Optimization</h1>
+      <p class="authors">Zengyu Li, Jiankai Xing, and Kun Xu</p>
+      <p class="affiliation">Department of Computer Science and Technology, Tsinghua University</p>
+      <p class="submission">Submitted to IEEE TVCG, 2026 (Under Review)</p>
+    </section>
+
+    <section class="abstract-section" id="abstract" aria-labelledby="abstract-title">
+      <h2 id="abstract-title">Abstract</h2>
+      <div class="abstract-content">
+        <p>Texture baking on a low-poly proxy is fundamentally limited by geometric mismatch. Geometry-driven baking establishes local surface correspondences, but cannot guarantee visually reasonable matches. Image-driven differentiable rendering optimizes the rendered result directly, but the optimizer must absorb errors caused by misaligned geometry, often producing blurry textures. We propose a method that combines the strengths of both views. We use inverse projection to compute candidate low-poly correspondences and apply statistics-based pixel masks to reject matches that are inconsistent across views. For texture optimization, an inpaint mode provides fallback supervision where no valid projection exists, while a projection mode refines the texture from trusted correspondences. For UV optimization, a scale-invariant energy decouples distortion control from area allocation. The two stages alternate to jointly optimize appearance and the UV layout. By separating geometric correspondence from optimization, our method supplies cleaner gradients to the texture optimizer while adapting the atlas to the appearance distribution on the simplified mesh. Experiments on multiple assets demonstrate improved texture baking quality compared with existing geometric and differentiable rendering baselines.</p>
+      </div>
+    </section>
+
+    <section class="results-section" id="results" aria-labelledby="results-title">
+      <h2 id="results-title">Result</h2>
+      <figure>
+        <a class="figure-image" href="assets/fig2.png" target="_blank" rel="noopener" aria-label="Open the comparison image at full resolution in a new tab">
+          <img src="assets/fig2.png" width="3200" height="2269" alt="Texture baking comparison on the Pengu model at three levels of detail. The high-poly reference is shown on the left; Ours, JointUV, NV, and Blender are compared with rendered images, UV atlases, detail crops, and CLIP and LPIPS scores." decoding="async">
+        </a>
+        <figcaption>
+          <p class="paper-caption">We bake textures onto a low-poly proxy of the <span class="model-name">Pengu</span> model at three LoD levels and compare against <a href="https://doi.org/10.1145/3617683" target="_blank" rel="noopener">JointUV</a>, <a href="https://research.nvidia.com/publication/2021-04_appearance-driven-automatic-3d-model-simplification" target="_blank" rel="noopener">NV (NVDiffModeling)</a>, and <a href="https://www.blender.org/" target="_blank" rel="noopener">Blender</a>. Each row shows one LoD level, and from left to right we show the high-poly reference, our result, JointUV, NV, and Blender. Each cell displays the rendered image with the UV atlas overlaid, along with two close-up crops of challenging regions. By explicitly resolving high–low correspondences and jointly optimizing textures and UVs, our method preserves sharper details and avoids color bleeding. CLIP↑/LPIPS↓ scores below each cell are computed over the full view (best in <strong>bold</strong>).</p>
+        </figcaption>
+      </figure>
+    </section>
+  </main>
+</body>
+</html>
